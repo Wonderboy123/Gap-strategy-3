@@ -1,0 +1,17 @@
+name: Build APK
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build APK
+        uses: ArtemSBulgakov/buildozer-action@v1
+        with:
+          workdir: .
+          buildozer_version: stable
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: Vol100-Gap-APK
+          path: ./bin/*.apk
